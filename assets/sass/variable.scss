@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+// 常用背景
+$bg: #F7F7F7;
+$bg-white: #fff;
+$bg-black: #000;
+$bg-f5: #F5F5F5;
+
+// 字体颜色
+$text-black: #000;
+$text-black1: #333;
+$text-black2: #666;
+$text-black3: #999;
+$text-black4: #ccc;
+$text-white: #fff;
+
+
+// 字体大小
+$fs12: 12px;
+$fs13: 13px;
+$fs14: 14px;
+$fs15: 15px;
+$fs16: 16px;
+$fs18: 18px;
+$fs20: 20px;
+$fs22: 22px;
+$fs24: 24px;
+$fs26: 26px;
+$fs28: 28px;
+$fs32: 32px;
+$fs37_5: 37.5px;
+
+/*
+px转rem, 基础font-size为37.5px
+@import "_assets/css/variable";
+px2rem(20px);
+px2rem(20px, 20px);
+type-of(1px); // number
+type-of("1px"); // string
+*/
+@function px2rem($px, $base-px: $fs37_5) {
+  $base-rem: $base-px / 1rem *1;
+  @if type-of($px) == 'number' {
+    @return $px / $base-rem;
+  }
+  @else {
+    $rem-values: ();
+    @each $value in $px {
+      @if $value == 0 or type-of($value) == 'number'{
+        $rem-values: append($rem-values, $value / $base-rem);
+      }
+    }
+    @return $rem-values;
+  }
+}
+
+// 设置输入框的提示符样式
+@mixin setPlaceholder($color) {
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &::-moz-placeholder {
+    color: $color;
+  }
+  &::-moz-placeholder {
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+// 多行文字省略号
+@mixin clamp($num) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+}
+
+@mixin bgImgAdorn {
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}

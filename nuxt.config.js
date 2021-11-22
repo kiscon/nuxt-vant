@@ -8,7 +8,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Nuxt.js project' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
@@ -18,12 +18,17 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'vant/lib/index.css'
+    'vant/lib/index.css',
+    {
+      src: '~assets/sass/index.scss',
+      lang: 'scss'
+    }
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/vant'
+    // '@/plugins/lib-flexible'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

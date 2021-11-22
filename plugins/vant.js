@@ -1,4 +1,56 @@
 import Vue from 'vue'
-import Vant from 'vant'
+import {
+  Button,
+  Swipe,
+  SwipeItem,
+  Search,
+  Checkbox,
+  CheckboxGroup,
+  Overlay,
+  List,
+  Toast,
+  Loading,
+  Tab,
+  Tabs,
+  CountDown,
+  Icon,
+  Image,
+  Empty,
+  Popup,
+  Switch,
+  Radio,
+  RadioGroup,
+  Picker,
+  Field,
+  Cell,
+  Dialog
+} from 'vant'
 
-Vue.use(Vant)
+const components = [
+  Button,
+  Swipe,
+  SwipeItem,
+  Search,
+  Checkbox,
+  CheckboxGroup,
+  Overlay,
+  List,
+  Toast,
+  Loading,
+  Tab,
+  Tabs,
+  CountDown,
+  Icon,
+  Image,
+  Empty,
+  Popup,
+  Switch,
+  Radio,
+  RadioGroup,
+  Picker,
+  Field,
+  Cell,
+  Dialog
+]
+
+components.forEach(v => Vue.use(v))

@@ -67,3 +67,20 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+
+### 目录介绍
+
+```js
+
+|-- .nuxt                            // Nuxt自动生成，临时的用于编辑的文件，build
+|-- assets                           // 用于组织未编译的静态资源入LESS、SASS 或 JavaScript
+|-- components                       // 用于自己编写的Vue组件，比如滚动组件，日历组件，分页组件
+|-- layouts                          // 布局目录，用于组织应用的布局组件，不可更改。
+|-- utils                            // 用于存放工具
+|-- pages                            // 用于存放写的页面，我们主要的工作区域
+|-- plugins                          // 用于存放JavaScript插件的地方
+|-- static                           // 用于存放静态资源文件
+|-- store                            // 用于组织应用的Vuex 状态管理。
+|-- nuxt.config.js                   // 用于组织Nuxt.js应用的个性化配置，已覆盖默认配置
+
+```
