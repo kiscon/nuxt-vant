@@ -22,14 +22,14 @@ export default {
       activeList: []
     }
   },
-  fetch() {
-    this.getBarrageList()
-  },
   created() {
+    this.getBarrageList()
     this.$nextTick(() => {
-      console.log(1111111111111)
-      this.parDom = document.querySelector('.barrage')
-      window.addEventListener('visibilitychange', this.visibilityChange)
+      if (process.browser) {
+        this.parDom = document.querySelector('.barrage')
+        console.log(this.parDom)
+        window.addEventListener('visibilitychange', this.visibilityChange)
+      }
     })
   },
   beforeDestroy() {
@@ -62,7 +62,7 @@ export default {
       }
       this.activeList.push(this.list.shift())
 
-      if (this.activeList.length > 5 && this.activeList.length % 10 === 0) {
+      if (process.browser && this.activeList.length > 5 && this.activeList.length % 10 === 0) {
         const doms = Array.from(document.querySelectorAll('.info-box'))
         if (doms.length >= 10) {
           doms.slice(0, 10).forEach(v => this.parDom.removeChild(v))
@@ -126,6 +126,11 @@ export default {
     opacity: 0;
     transform: translate3d(0, -165px, 0) translateZ(0);
   }
+}
+
+.barrage {
+  height: 100%;
+  background-color: #409EFF;
 }
 
 .info-box {
