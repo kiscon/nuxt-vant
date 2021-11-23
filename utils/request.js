@@ -11,7 +11,7 @@ const serivce = () => {
   })
 
   instance.interceptors.response.use(res => {
-    console.log(res)
+    console.log(res.data)
     return res
   }, err => {
     return Promise.reject(err)
