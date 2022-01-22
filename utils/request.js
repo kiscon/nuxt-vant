@@ -1,49 +1,72 @@
 import Qs from 'qs'
 import axios from 'axios'
 
+// axios实例
+const serivce = () => {
+  const instance = axios.create({
+    timeout: 50000,
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  })
+
+  instance.interceptors.response.use(res => {
+    console.log(res.data)
+    return res
+  }, err => {
+    return Promise.reject(err)
+  })
+
+  return instance
+}
+
+// 内容类型
+const getContentType = (opts = {}) => {
+  return {
+    DEFAULT: 'application/x-www-form-urlencoded',
+    JSON: 'application/json',
+    FORM_DATA: 'multipart/form-data'
+  }[opts.dataType || 'DEFAULT']
+}
+
+// 转换请求数据
+const transformData = (opts = {}, data) => {
+  return {
+    DEFAULT: Qs.stringify(data),
+    JSON: JSON.stringify(data),
+    FORM_DATA: data
+  }[opts.dataType || 'DEFAULT']
+}
+
+export const http = serivce()
+
 export const get = (url, params, opts = {}) => {
-  return axios({
+  return http({
     url,
     method: 'get',
     params
   }).then((response) => {
     return Promise.resolve(response.data || {})
-  }).catch(function (error) {
+  }).catch(function(error) {
     return Promise.reject(error)
   })
 }
 
 export const post = (url, params, opts = {}) => {
-  return axios({
+  return http({
     url,
     method: 'post',
     headers: {
       'Content-Type': getContentType(opts)
     },
-    transformRequest: [function (data) {
-      if (opts.dataType === 'JSON') {
-        return JSON.stringify(data)
-      } else if (opts.dataType === 'FORM_DATA') {
-        return data
-      } else {
-        return Qs.stringify(data)
-      }
+    transformRequest: [function(data) {
+      return transformData(opts, data)
     }],
     data: params
   }).then((response) => {
     return Promise.resolve(response.data || {})
-  }).catch(function (error) {
+  }).catch(function(error) {
     return Promise.reject(error)
   })
 }
 
-function getContentType (opts = {}) {
-  let type = 'application/x-www-form-urlencoded'
-  if (opts.dataType === 'JSON') {
-    type = 'application/json'
-  }
-  if (opts.dataType === 'FORM_DATA') {
-    type = 'multipart/form-data'
-  }
-  return type
-}

@@ -35,10 +35,17 @@ export default {
     }
   ],
 
+  // proxy
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3001/'
+    }
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/vant',
-    { src: '@/plugins/lib-flexible', ssr: false }
+    { src: '@/plugins/amfe-flexible', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -52,10 +59,16 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     ['@nuxtjs/dotenv', { filename: '.env.prod' }] // 指定打包时使用的dotenv
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    vendor: [
+      'axios',
+      '~/plugins/vant'
+    ]
   }
 }

@@ -5,7 +5,7 @@
     :style="styleOptions"
     @click="onToTop"
   >
-    <div class="back-top-image" />
+    <div class="back-top-image"></div>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
       default: ''
     }
   },
-  data () {
+  data() {
     return {
       visible: false,
       location: 0,
@@ -41,11 +41,11 @@ export default {
   },
   computed: {
     // 位置
-    styleOptions ({ bottom, right }) {
+    styleOptions({ bottom, right }) {
       return { right, bottom }
     }
   },
-  mounted () {
+  mounted() {
     if (this.targetEle) {
       this.domEle = document.querySelector(this.targetEle)
       this.domEle.addEventListener('scroll', this.handleScroll)
@@ -53,7 +53,7 @@ export default {
       window.addEventListener('scroll', this.handleScroll)
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.targetEle) {
       this.domEle.removeEventListener('scroll', this.handleScroll)
     } else {
@@ -62,12 +62,12 @@ export default {
   },
   methods: {
     // 处理滚动
-    handleScroll (e) {
+    handleScroll(e) {
       const scrolltop = this.scrollTop(e)
       this.visible = scrolltop > this.height
     },
     // 滚动到顶部
-    scrollToTop () {
+    scrollToTop() {
       if (this.targetEle) {
         this.domEle.scrollTo({ top: 0, behavior: 'smooth' })
       } else {
@@ -75,11 +75,11 @@ export default {
       }
     },
     // 获取 scrollTop
-    scrollTop (e) {
+    scrollTop(e) {
       return document.documentElement.scrollTop || document.body.scrollTop || e.target.scrollTop
     },
     // 点击回滚顶部
-    onToTop () {
+    onToTop() {
       this.scrollToTop()
       this.$emit('toTop')
     }
