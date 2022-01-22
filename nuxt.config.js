@@ -1,3 +1,13 @@
+const dotenv = require('dotenv')
+const path = require('path')
+const env = dotenv.config({
+  path: path.resolve(__dirname, '.env.dev')
+})
+
+// console.log(env)
+
+// https://github.com/fengxianqi/front_end-demos/tree/master/src/nuxt-test
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -42,6 +52,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    ['@nuxtjs/dotenv', { filename: '.env.prod' }] // 指定打包时使用的dotenv
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
