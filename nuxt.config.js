@@ -4,7 +4,7 @@ const env = dotenv.config({
   path: path.resolve(__dirname, '.env.dev')
 })
 
-// console.log(env)
+console.log(env)
 
 // https://github.com/fengxianqi/front_end-demos/tree/master/src/nuxt-test
 
@@ -60,8 +60,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/proxy',
-    ['@nuxtjs/dotenv', { filename: '.env.prod' }] // 指定打包时使用的dotenv
+    '@nuxtjs/proxy'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
